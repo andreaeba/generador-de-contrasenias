@@ -28,7 +28,7 @@ divShow.appendChild(divCopy)
 divShow.appendChild(divRefresh)
 
 divPassword.classList.add('password-section')
-const textInit = document.createTextNode('e4¡qQ<>98hGFFTh') 
+const textInit = document.createTextNode('e4¡qQ#98hGFFTh') 
 divPassword.appendChild(textInit)
 
 const iconCopy = document.createElement('img')
@@ -97,7 +97,7 @@ const selectLength12 = document.createElement('div')
 const selectLength9 = document.createElement('div')
 const selectLength6 = document.createElement('div')
 
-
+// Label 1
 const labelTwelveCaracter = document.createElement('label')
 labelTwelveCaracter.setAttribute("for", "checkTwelve")
 labelTwelveCaracter.textContent = "12 caracteres"
@@ -105,8 +105,10 @@ labelTwelveCaracter.textContent = "12 caracteres"
 const twelveCaracter = document.createElement('input');
 twelveCaracter.setAttribute("type", "radio");
 twelveCaracter.setAttribute("id", "checkTwelve");
+twelveCaracter.setAttribute("name", "select-length")
+// twelveCaracter.setAttribute("onchange", "verifica_seleccion(this)")
 
-
+// Label 2
 const labelNineCaracter = document.createElement('label')
 labelNineCaracter.setAttribute("for", "checkNine");
 labelNineCaracter.textContent = "9 caracteres"
@@ -114,8 +116,10 @@ labelNineCaracter.textContent = "9 caracteres"
 const nineCaracter = document.createElement('input');
 nineCaracter.setAttribute("type", "radio");
 nineCaracter.setAttribute("id", "checkNine");
+nineCaracter.setAttribute("name", "select-length")
+// nineCaracter.setAttribute("onchange", "verifica_seleccion(this)")
 
-
+// Label 3
 const labelSixCaracter = document.createElement('label')
 labelSixCaracter.setAttribute("for", "checkSix")
 labelSixCaracter.textContent = "6 caracteres"
@@ -123,6 +127,17 @@ labelSixCaracter.textContent = "6 caracteres"
 const sixCaracter = document.createElement('input');
 sixCaracter.setAttribute("type", "radio");
 sixCaracter.setAttribute("id", "checkSix");
+sixCaracter.setAttribute("name", "select-length")
+// sixCaracter.setAttribute("onchange", "verifica_seleccion(this)")
+
+// function verifica_seleccion(check){
+//     if(!check.checked){
+//         check.checked=1;
+//     }
+// }
+
+// verifica_seleccion(twelveCaracter)
+
 
 form.appendChild(selectLength12)
 form.appendChild(selectLength9)
@@ -137,6 +152,116 @@ selectLength6.appendChild(sixCaracter)
 selectLength6.appendChild(labelSixCaracter)
 
 
+//Reglas
+
+const selectRules1 = document.createElement('div')
+const selectRules2 = document.createElement('div')
+const selectRules3 = document.createElement('div')
+
+// Label 1
+const labelOnlyLetters = document.createElement('label')
+labelOnlyLetters.setAttribute("for", "checkLetters")
+labelOnlyLetters.textContent = "Solo letras"
+
+const onlyLetters = document.createElement('input');
+onlyLetters.setAttribute("type", "radio");
+onlyLetters.setAttribute("id", "checkLetters");
+onlyLetters.setAttribute("name", "select-rules")
+
+// Label 2
+const labelSimpleRead = document.createElement('label')
+labelSimpleRead.setAttribute("for", "checkRead");
+labelSimpleRead.textContent = "Lectura simple"
+
+const simpleRead = document.createElement('input');
+simpleRead.setAttribute("type", "radio");
+simpleRead.setAttribute("id", "checkRead");
+simpleRead.setAttribute("name", "select-rules")
+
+// Label 3
+const labelAllCaracter = document.createElement('label')
+labelAllCaracter.setAttribute("for", "checkAll")
+labelAllCaracter.textContent = "Todos los caracteres"
+
+const allCaracter = document.createElement('input');
+allCaracter.setAttribute("type", "radio");
+allCaracter.setAttribute("id", "checkAll");
+allCaracter.setAttribute("name", "select-rules")
 
 
+//No meti esta seccion en un form, porque hay que ver como va eso de verdad
+divRules.appendChild(selectRules1)
+divRules.appendChild(selectRules2)
+divRules.appendChild(selectRules3)
 
+selectRules1.appendChild(onlyLetters)
+selectRules1.appendChild(labelOnlyLetters)
+
+selectRules2.appendChild(simpleRead)
+selectRules2.appendChild(labelSimpleRead)
+
+selectRules3.appendChild(allCaracter)
+selectRules3.appendChild(labelAllCaracter)
+
+
+// Caracteres
+
+const selectCaracter1 = document.createElement('div')
+const selectCaracter2 = document.createElement('div')
+const selectCaracter3 = document.createElement('div')
+const selectCaracter4 = document.createElement('div')
+
+// Label 1
+const labelUpperCase = document.createElement('label')
+labelUpperCase.setAttribute("for", "check-characters")
+labelUpperCase.textContent = "Mayúsculas"
+
+const inputUpperCase = document.createElement('input')
+inputUpperCase.setAttribute("type", "checkbox")
+inputUpperCase.setAttribute("id", "input-upper-case")
+
+
+// Label 2
+const labelLowerCase = document.createElement('label')
+labelLowerCase.setAttribute("for", "check-characters")
+labelLowerCase.textContent = "Minúsculas"
+
+const inputLowerCase = document.createElement('input')
+inputLowerCase.setAttribute("type", "checkbox")
+inputLowerCase.setAttribute("id", "input-lower-case")
+
+// Label 3
+const labelNumbers = document.createElement('label')
+labelNumbers.setAttribute("for", "check-characters")
+labelNumbers.textContent = "Números"
+
+const inputNumbers = document.createElement('input')
+inputNumbers.setAttribute("type", "checkbox")
+inputNumbers.setAttribute("id", "input-numbers")
+inputNumbers.disabled = true
+
+// Label 4
+const labelSymbols =document.createElement('label')
+labelSymbols.setAttribute("for", "check-characters")
+labelSymbols.textContent = "Símbolos"
+
+const inputSymbols = document.createElement('input')
+inputSymbols.setAttribute("type", "checkbox")
+inputSymbols.setAttribute("id", "input-symbols")
+inputSymbols.disabled = true
+
+
+selectCaracter1.appendChild(inputUpperCase)
+selectCaracter1.appendChild(labelUpperCase)
+selectCaracter2.appendChild(inputLowerCase)
+selectCaracter2.appendChild(labelLowerCase)
+selectCaracter3.appendChild(inputNumbers)
+selectCaracter3.appendChild(labelNumbers)
+selectCaracter4.appendChild(inputSymbols)
+selectCaracter4.appendChild(labelSymbols)
+
+
+divCaracter.appendChild(selectCaracter1)
+divCaracter.appendChild(selectCaracter2)
+divCaracter.appendChild(selectCaracter3)
+divCaracter.appendChild(selectCaracter4)
