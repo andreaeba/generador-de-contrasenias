@@ -28,7 +28,7 @@ divShow.appendChild(divCopy)
 divShow.appendChild(divRefresh)
 
 divPassword.classList.add('password-section')
-const textInit = document.createTextNode('e4¡qQ#98hGFFTh') 
+const textInit = document.createTextNode('e4!8FTh') 
 divPassword.appendChild(textInit)
 
 const iconCopy = document.createElement('img')
@@ -135,6 +135,7 @@ form.appendChild(selectLength12)
 form.appendChild(selectLength9)
 form.appendChild(selectLength6)
 
+
 divLength.appendChild(form)
 selectLength12.appendChild(twelveCaracter)
 selectLength12.appendChild(labelTwelveCaracter)
@@ -181,7 +182,7 @@ allCaracter.setAttribute("id", "checkAll");
 allCaracter.setAttribute("name", "select-rules")
 
 
-//No meti esta seccion en un form, porque hay que ver como va eso de verdad
+
 divRules.appendChild(selectRules1)
 divRules.appendChild(selectRules2)
 divRules.appendChild(selectRules3)
@@ -241,6 +242,7 @@ const inputSymbols = document.createElement('input')
 inputSymbols.setAttribute("type", "checkbox")
 inputSymbols.setAttribute("id", "input-symbols")
 // inputSymbols.disabled = true
+
 
 selectCaracter1.appendChild(inputUpperCase)
 selectCaracter1.appendChild(labelUpperCase)

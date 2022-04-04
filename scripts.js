@@ -18,7 +18,7 @@ divShow.appendChild(divPassword);
 divShow.appendChild(divCopy);
 divShow.appendChild(divRefresh);
 divPassword.classList.add('password-section');
-var textInit = document.createTextNode('e4¡qQ#98hGFFTh');
+var textInit = document.createTextNode('e4!8FTh');
 divPassword.appendChild(textInit);
 var iconCopy = document.createElement('img');
 iconCopy.setAttribute('src', './assets/copy.png');
@@ -134,7 +134,6 @@ var allCaracter = document.createElement('input');
 allCaracter.setAttribute("type", "radio");
 allCaracter.setAttribute("id", "checkAll");
 allCaracter.setAttribute("name", "select-rules");
-//No meti esta seccion en un form, porque hay que ver como va eso de verdad
 divRules.appendChild(selectRules1);
 divRules.appendChild(selectRules2);
 divRules.appendChild(selectRules3);
