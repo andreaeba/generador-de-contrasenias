@@ -2,6 +2,9 @@
     box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
 body {
     margin: 0;
     background-color: blanchedalmond;
@@ -19,10 +22,14 @@ body {
     align-items: center;
     flex-direction: column;
     margin-top: 100px;
+    
 }
 
 .container h1 {
-    font-size:2vw;
+    font-size:1.3em;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 2px 2px 4px #fff;
+    margin-bottom:40px;
 }
 
 .div-show {
@@ -31,12 +38,13 @@ body {
     border-radius: 20px;
     padding:20px;
     display:flex;
-    align-items: center;    
+    align-items: center; 
+    box-shadow: 2px 3px 7px 0px;  
 }
 
 .password-section {
     width: 85%;
-    font-size: 1.9vw;
+    font-size: 1em;
     display:flex;
     align-items: center;   
 }
@@ -45,7 +53,10 @@ body {
     display:flex;
     align-items: center;  
     justify-content: flex-end;
-    
+}
+
+.icons:hover {
+    cursor: pointer;
 }
 
 .icons img {
@@ -61,10 +72,11 @@ body {
     margin-top: 20px;
     display:flex;
     flex-direction: column;
+    box-shadow: 2px 3px 7px 0px
 }
 
 .text-personalize {
-    font-size: 1.2vw;
+    font-size: 0.9em;
     margin: 0;
 } 
 
@@ -74,29 +86,27 @@ body {
     justify-content: space-between;
 }
 
-
 .select-lenght {
     display:flex;
     flex-direction: column;
 }
 
-.select-config{
+.select-config {
     width: 33%;
-    font-size: 0.9vw;
+    font-size:0.7em;
 }
 
-.select-config h6 {
-    font-size: 1vw;
-    margin: 10px 0px;
-    font-weight: 100;
+.h6text {
+    font-size:1em;
 }
+
 
 /* Responsive  */
 
-@media (max-width: 991.98px) and (min-width: 575.98px) {
+/* @media (max-width: 991px) and (min-width: 575.98px) {
 
     .container {
-        max-width: 300px;
+        width: 50%;
     }
     .specific-config {
         display:flex;
@@ -105,23 +115,23 @@ body {
     }
     .select-config{
         width: 80%;
-        font-size: 1.2vw;
+        font-size: 1.2em;
     }
     .text-personalize {
-        font-size: 1.2vw;
+        font-size: 1.2em;
     } 
     .select-config h6 {
-        font-size: 1.9vw;
+        font-size: 1.9em;
     
     }
-} 
+}  */
 
-@media (max-width: 575.98px) {
+@media (max-width: 575px) {
 
     .container {
         width: 80%;
     }
-  
+ 
     .specific-config {
         display:flex;
         flex-direction: column;
@@ -130,20 +140,13 @@ body {
 
     .select-config{
         width: 100%;
-        font-size: 2vw;
+        font-size: 1em;
     }
 
     .text-personalize {
-        font-size: 2vw;
+        font-size: 1em;
     } 
 
-    .select-config h6 {
-        font-size: 3vw;
-    }
 
-    .password-section {
-      
-        font-size: 4vw;     
-    }
 
 } 
