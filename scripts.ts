@@ -8,9 +8,16 @@ const h1Text = document.createTextNode('Generador de contraseñas')
 
 container.classList.add('container')
 
-body.appendChild(container)
+const par = document.createElement('p')
+const textPar = document.createTextNode('Crea contraseñas seguras y aleatorias de forma online. Solo tenes que elegir los parámetros que precises y listo! :)')
+
+par.classList.add('textPar')
+
 h1.appendChild(h1Text)
-container.appendChild(h1)
+body.appendChild(h1)
+body.appendChild(par)
+par.appendChild(textPar)
+body.appendChild(container)
 
 // Sección div de mostrar contraseña
 
@@ -29,7 +36,7 @@ divShow.appendChild(divRefresh)
 divPassword.classList.add('password-section')
 
 const p = document.createElement('span')
-const textInit = document.createTextNode('e4!8@¿¿iJf04FTh') 
+const textInit = document.createTextNode('e4!8@¿¿iJf04FTh')
 
 p.appendChild(textInit)
 divPassword.appendChild(p)
@@ -118,7 +125,7 @@ const caracters = {
 }
 
 const types = {
-    numeros: true,
+    numeros: true,   
     simbolos: true,
     mayusculas: true,
     minusculas: true,
@@ -140,6 +147,7 @@ for (const elem of lengthChar) {
     input.setAttribute("id", `check-${elem}`)
     input.setAttribute("name", "select-length")
     input.setAttribute("value", `${elem}`)
+    input.classList.add('long-input')
     // input[1].setAttribute("checked", "checked")
 
     selectLength.appendChild(input)
@@ -147,15 +155,14 @@ for (const elem of lengthChar) {
     divLength.appendChild(selectLength)
 
 
-   
-    input.addEventListener("change", (e) => {
-    generatePassword(e.target.value)
+    input.addEventListener("change", () => {
+    generatePassword()
     //console.log(e.target.value);
-    
+
     })
 }
 
-//For de reglas 
+//For de reglas
 
 const rules: string[] = ["Solo-letras", "Lectura-simple", "Todos-los-caracteres"]
 
@@ -167,84 +174,32 @@ for (const elem of rules) {
 
     const label = document.createElement('label')
     label.setAttribute("for", `check-${elem}`)
-    label.textContent = `${elem}`
+    label.setAttribute("id", `label-${elem}`)
 
     const input = document.createElement('input');
     input.setAttribute("type", "radio");
     input.setAttribute("id", `check-${elem}`);
     input.setAttribute("name", "select-rules");
     input.setAttribute("value", `${elem}`)
-    input.classList.add('long-control')
+    input.classList.add('rules-input')
 
     selectRules.appendChild(input)
     selectRules.appendChild(label)
     divRules.appendChild(selectRules)
 
-    input.addEventListener("change", (e) => {
-    generatePassword(e.target.value)
-    //console.log(e.target.value);
-        
+    input.addEventListener("change", () => {
+    generatePassword()
+
     })
 }
 
-const textSoloLetras = document.createTextNode("Solo letras")
+const nameSoloLetras = document.getElementById('label-Solo-letras')
+const nameSecturaSimple = document.getElementById('label-Lectura-simple')
+const nameTodosLosCaractes = document.getElementById('label-Todos-los-caracteres')
 
-// Funciones listener Reglas
-
-const checkSoloLetras = document.getElementById('check-Solo-letras')
-
-
-checkSoloLetras.addEventListener("change", (e) => { //hay que cambiar a change
-
-    document.getElementById("check-simbolos").setAttribute("disabled", "true")
-    document.getElementById("check-numeros").setAttribute("disabled", "true")
-    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-    document.getElementById('check-minusculas').setAttribute("checked", "checked")
-    types.numeros = false
-    types.simbolos = false
-    generatePassword(12)
-
-})
-
-const checkLecturaSimple = document.getElementById('check-Lectura-simple')
-
-checkLecturaSimple.addEventListener("change", (e) => { //hay que cambiar a change
-
-    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-    document.getElementById('check-minusculas').setAttribute("checked", "checked")
-    document.getElementById('check-numeros').setAttribute("checked", "checked")
-    document.getElementById("check-numeros").removeAttribute("disabled")
-    types.numeros = true
-    types.simbolos = false
-    generatePassword(12)
-
-})
-
-const checkTodosLosCaracteres = document.getElementById('check-Todos-los-caracteres')
-
-checkTodosLosCaracteres.addEventListener("change", (e) => { //hay que cambiar a change
-
-    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-    document.getElementById('check-minusculas').setAttribute("checked", "checked")
-    document.getElementById('check-numeros').setAttribute("checked", "checked")
-    document.getElementById('check-simbolos').setAttribute("checked", "checked")
-      document.getElementById("check-numeros").removeAttribute("disabled")
-      document.getElementById("check-simbolos").removeAttribute("disabled")
-    types.mayusculas = true
-    types.minusculas = true
-    types.numeros = true
-    types.simbolos = true
-    generatePassword(12)
-
-})
-
-// Funciones listener Caracteres
-
-
-
-
-
-
+nameSoloLetras.textContent = "Solo letras"
+nameSecturaSimple.textContent = "Lectura simple"
+nameTodosLosCaractes.textContent = "Todos los caracteres"
 
 // For de Caracteres
 
@@ -254,148 +209,138 @@ for (const elem of character) {
     const selectChar = document.createElement('div')
     const label = document.createElement('label')
     label.setAttribute("for", `check-${elem}`)
-    label.textContent = `${elem}`
+    label.setAttribute("id", `label-${elem}`)
 
     const input = document.createElement('input')
     input.setAttribute("type", "checkbox")
     input.setAttribute("id", `check-${elem}`)
     input.setAttribute("name", "select-char");
+    input.setAttribute("value", `${elem}`)
 
     input.classList.add('select-char')
 
     selectChar.appendChild(input)
     selectChar.appendChild(label)
-    divCaracter.appendChild(selectChar)  
+    divCaracter.appendChild(selectChar)
 
+    input.addEventListener("change", () => {
+    generatePassword()
+
+    })
 
 }
 
-// const CheckChar = document.getElementsByClassName('select-char')
+    const nameMayusculas = document.getElementById('label-mayusculas')
+    const nameMinusculas = document.getElementById('label-minusculas')
+    const nameNumeros = document.getElementById('label-numeros')
+    const nameSimbolos = document.getElementById('label-simbolos')
 
-// console.log(CheckChar);
+    nameMayusculas.textContent = "Mayúsculas"
+    nameMinusculas.textContent = "Minúsculas"
+    nameNumeros.textContent = "Números"
+    nameSimbolos.textContent = "Símbolos"
 
-// CheckChar.addEventListener()
-
-// const validarChar = () => {
-
-//     for(let i = 0; i < CheckChar.length; i++) {
-
-//         if(CheckChar[i].checked == true) {
-//            types[i] = true
-//         } else if(CheckChar[0].checked == false) {
-//             types[i] = false
-//         }
-//     }
+const generatePassword = () => {
 
 
-// }
-
-// validarChar()
-
-/*
-**
-** Funciones para personalizar la clave dependiendo de la longitud
-** 
-*/ 
-
-const inputsRules = document.getElementsByClassName('long-control')
-
-//console.log(inputsRules);
-
-function validateFormRules () { // No funcionaaa
-
-    for(let input of inputsRules) { // esta entrando en los 3 NO SIRVEEE!!!!
-
-
-        if(input.value == "Solo-letras") {         
-            // document.getElementById("check-mayusculas").setAttribute("enabled", "true")
-            // document.getElementById("check-minusculas").setAttribute("disabled", "false")
-            // document.getElementById("check-simbolos").setAttribute("disabled", "true")
-            // document.getElementById("check-numeros").setAttribute("disabled", "true")
-            // // types.numeros = false
-            // types.simbolos = false  
-            
-            console.log("funciona solo letras");      
-        } else if(input.value== "Lectura-simple") {
-            // document.getElementById("check-mayusculas").setAttribute("checked", "checked")
-            // document.getElementById("check-minusculas").setAttribute("checked", "checked")
-            // document.getElementById("check-numeros").setAttribute("checked", "checked")
-            // document.getElementById("check-numeros").setAttribute("disabled", "false")
-            // document.getElementById("check-simbolos").setAttribute("disabled", "true")
-            console.log("funciona lectura simple");
-        } else if(input.value == "Todos-los-caracteres") {
-            // document.getElementById("check-mayusculas").setAttribute("disabled", "false")
-            // document.getElementById("check-minusculas").setAttribute("disabled", "false")
-            // document.getElementById("check-numeros").setAttribute("disabled", "false")
-            // document.getElementById("check-simbolos").setAttribute("disabled", "false")
-            console.log("funciona todos los caracteres");  
-        }
-
-    
-    }
-    
-}
-
-
-const generatePassword = (number: number) => {
-
-    //validateFormRules()
-    //validarChar()
+    const longInputs = document.getElementsByClassName("long-input")
+    const rulesInputs = document.getElementsByClassName("rules-input")
+    const charInputs = document.getElementsByClassName("select-char")
 
     let char = ""
     let password = ""
+    let selectValueLong = 0
 
-    for (let type in types) {
-        if (types[type] == true) {
-            char = char + caracters[type] + " "
-            // console.log(char)
+    for(const longInput of longInputs) {
+        if(longInput.checked == true) {
+            if(longInput.value == 12) {
+                selectValueLong = 12
+            } else if(longInput.value == 9) {
+                selectValueLong = 9
+            } else if(longInput.value == 6) {
+                selectValueLong = 6
+            }           
+           console.log(selectValueLong)
         }
     }
+
+
+    for(const ruleInput of rulesInputs) {
+        //console.log(ruleInput.checked);
+
+
+        if (ruleInput.checked == true)  {
+            if(ruleInput.value == "Solo-letras") {
+
+                document.getElementById("check-simbolos").setAttribute("disabled", "true")
+                document.getElementById("check-numeros").setAttribute("disabled", "true")
+                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                
+                types.mayusculas = true
+                types.minusculas = true
+                types.numeros = false
+                types.simbolos = false
+                console.log("funcionaa solo letras")
+            } else if(ruleInput.value == "Lectura-simple") {
+                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                document.getElementById('check-numeros').setAttribute("checked", "checked")
+                //document.getElementById("check-simbolos").removeAttribute("checked")
+                document.getElementById("check-numeros").removeAttribute("disabled")
+                
+                types.mayusculas = true
+                types.minusculas = true
+                types.numeros = true
+                types.simbolos = false
+                console.log("funcionaa lectura simple")
+            } else if(ruleInput.value == "Todos-los-caracteres") {
+                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                document.getElementById('check-numeros').setAttribute("checked", "checked")
+                document.getElementById('check-simbolos').setAttribute("checked", "checked")
+                document.getElementById("check-numeros").removeAttribute("disabled")
+                document.getElementById("check-simbolos").removeAttribute("disabled")
+                types.mayusculas = true
+                types.minusculas = true
+                types.numeros = true
+                types.simbolos = true
+                console.log("funcionaa todos los caracteres")
+            }
+        }
+
+
+    for(const selectChar of charInputs) {
+        for(const type in types) {
+            if(selectChar.checked == true) {
+               // if(types[type] == true) {
+                    if(type == selectChar.value) {
+                        char = char + caracters[type] + " "
+                    }
+                //}
+            }
+        }
+
+ }
 
     let newArray = char.split(' ')
 
     // console.log(newArray);
 
-    for(let i = 0; i < number; i++) {
+    for(let i = 0; i < selectValueLong ; i++) {
         password = password + newArray[Math.floor(Math.random() * newArray.length)]
     }
 
     textInit.textContent = password
-    console.log(password);
-    
+    //console.log(password);
+
+
+    }
+
+
+
+
 }
-
-
-
-
-
-
-
-
-/*
-**
-** Funciones para personalizar la clave dependiendo de la regla
-** 
-*/ 
-
-
-
-
-// function valuateForm() {
-
-//     let element = document.forms["passForm"].checked
-    
-//     if(element == true) {
-
-//         console.log(element)
-
-//     }
-
-// }
-
-// valuateForm()
-
-
 
 
 // const findSimilar = (a, b) => {
@@ -404,13 +349,13 @@ const generatePassword = (number: number) => {
 
 //     for (let elem of char) {
 
-    
+
 //         if((a == "I" && b == 1) || (a == "i" && b == 1) || (a == "O" && b == 0) ||(a == "o" && b == 0)) {
 //            b = a
 //            console.log(a, b)
 //         }
 //     }
-        
+
 
 // }
 
@@ -423,10 +368,10 @@ const generatePassword = (number: number) => {
 // function copyToClipBoard() {
 
 //     let content = document.getElementById('textPass')
-            
+
 //     content.select();
 //     document.execCommand('copy');
-        
+
 //     alert("Copied!");
 // }
 
@@ -435,7 +380,7 @@ const generatePassword = (number: number) => {
 
 iconRefresh.addEventListener("click", () => {
 
-    generatePassword(12)
+    generatePassword()
 
 })
 
@@ -457,8 +402,8 @@ const inicializarPagina = () => { // descomentar todo lo que esta comentado cuan
 
 
 
-    generatePassword(12)
+    generatePassword()
 
 }
 
-window.onload = inicializarPagina()
+window.onload = inicializarPagina() 
