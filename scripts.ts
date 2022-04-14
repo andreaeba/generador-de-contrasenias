@@ -3,6 +3,8 @@ const body = document.body
 
 const container = document.createElement('div')
 const h1 = document.createElement('h1')
+const divH1 = document.createElement('div')
+divH1.classList.add('title')
 
 const h1Text = document.createTextNode('Generador de contraseñas')
 
@@ -13,11 +15,13 @@ const textPar = document.createTextNode('Crea contraseñas seguras y aleatorias 
 
 par.classList.add('textPar')
 
+body.appendChild(divH1)
 h1.appendChild(h1Text)
-body.appendChild(h1)
+divH1.appendChild(h1)
 body.appendChild(par)
 par.appendChild(textPar)
 body.appendChild(container)
+
 
 // Sección div de mostrar contraseña
 
@@ -36,7 +40,7 @@ divShow.appendChild(divRefresh)
 divPassword.classList.add('password-section')
 
 const p = document.createElement('span')
-const textInit = document.createTextNode('e4!8@¿¿iJf04FTh')
+const textInit = document.createTextNode('e4!@¿¿i04FTh')
 
 p.appendChild(textInit)
 divPassword.appendChild(p)
@@ -78,6 +82,17 @@ const divLength = document.createElement('div')
 const divRules = document.createElement('div')
 const divCaracter = document.createElement('div')
 
+const footer = document.createElement('div')
+const pFooter = document.createElement('p')
+const textFooter = document.createTextNode('Creado por Alondra y Andrea')
+
+body.appendChild(footer)
+footer.appendChild(pFooter)
+pFooter.appendChild(textFooter)
+
+pFooter.classList.add('footer')
+
+
 divLength.classList.add('select-config')
 divRules.classList.add('select-config')
 divCaracter.classList.add('select-config')
@@ -112,6 +127,7 @@ divSpecificConfig.appendChild(form)
 form.appendChild(divLength)
 form.appendChild(divRules)
 form.appendChild(divCaracter)
+
 
 
 
@@ -271,7 +287,8 @@ const generatePassword = () => {
 
         if (ruleInput.checked == true)  {
             if(ruleInput.value == "Solo-letras") {
-
+                document.getElementById("check-simbolos").removeAttribute("checked")
+                document.getElementById("check-numeros").removeAttribute("checked")
                 document.getElementById("check-simbolos").setAttribute("disabled", "true")
                 document.getElementById("check-numeros").setAttribute("disabled", "true")
                 document.getElementById('check-mayusculas').setAttribute("checked", "checked")
@@ -281,14 +298,14 @@ const generatePassword = () => {
                 types.minusculas = true
                 types.numeros = false
                 types.simbolos = false
+
                 console.log("funcionaa solo letras")
             } else if(ruleInput.value == "Lectura-simple") {
                 document.getElementById('check-mayusculas').setAttribute("checked", "checked")
                 document.getElementById('check-minusculas').setAttribute("checked", "checked")
                 document.getElementById('check-numeros').setAttribute("checked", "checked")
                 //document.getElementById("check-simbolos").removeAttribute("checked")
-                document.getElementById("check-numeros").removeAttribute("disabled")
-                
+                document.getElementById("check-numeros").removeAttribute("disabled")                
                 types.mayusculas = true
                 types.minusculas = true
                 types.numeros = true
@@ -315,7 +332,9 @@ const generatePassword = () => {
             if(selectChar.checked == true) {
                // if(types[type] == true) {
                     if(type == selectChar.value) {
-                        char = char + caracters[type] + " "
+                        char = char + caracters[type] + " " 
+                       // console.log(char);
+                        
                     }
                 //}
             }
@@ -324,10 +343,14 @@ const generatePassword = () => {
  }
 
     let newArray = char.split(' ')
+    //console.log(newArray);
+    
 
     // console.log(newArray);
 
-    for(let i = 0; i < selectValueLong ; i++) {
+    for(let i = 0; i < selectValueLong / 3 ; i++) {
+        console.log(selectValueLong);
+        
         password = password + newArray[Math.floor(Math.random() * newArray.length)]
     }
 
@@ -342,22 +365,23 @@ const generatePassword = () => {
 
 }
 
+// let prueba = "kjhi561qcw"
 
-// const findSimilar = (a, b) => {
+// const findSimilar = (pass) => {
 
-//     char
+    
 
-//     for (let elem of char) {
-
-
-//         if((a == "I" && b == 1) || (a == "i" && b == 1) || (a == "O" && b == 0) ||(a == "o" && b == 0)) {
-//            b = a
-//            console.log(a, b)
-//         }
+//     if((pass.includes('i')) && (pass.includes(1))) {
+//         return pass.parseInt(indexOf(1))
 //     }
 
 
-// }
+
+//  }
+
+// findSimilar(prueba)
+
+
 
 // console.log(findSimilar("i", 1))
 

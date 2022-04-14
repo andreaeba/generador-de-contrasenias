@@ -2,13 +2,16 @@
 var body = document.body;
 var container = document.createElement('div');
 var h1 = document.createElement('h1');
+var divH1 = document.createElement('div');
+divH1.classList.add('title');
 var h1Text = document.createTextNode('Generador de contraseñas');
 container.classList.add('container');
 var par = document.createElement('p');
 var textPar = document.createTextNode('Crea contraseñas seguras y aleatorias de forma online. Solo tenes que elegir los parámetros que precises y listo! :)');
 par.classList.add('textPar');
+body.appendChild(divH1);
 h1.appendChild(h1Text);
-body.appendChild(h1);
+divH1.appendChild(h1);
 body.appendChild(par);
 par.appendChild(textPar);
 body.appendChild(container);
@@ -24,7 +27,7 @@ divShow.appendChild(divCopy);
 divShow.appendChild(divRefresh);
 divPassword.classList.add('password-section');
 var p = document.createElement('span');
-var textInit = document.createTextNode('e4!8@¿¿iJf04FTh');
+var textInit = document.createTextNode('e4!@¿¿i04FTh');
 p.appendChild(textInit);
 divPassword.appendChild(p);
 p.setAttribute("id", "textPass");
@@ -51,6 +54,13 @@ var divSpecificConfig = document.createElement('div');
 var divLength = document.createElement('div');
 var divRules = document.createElement('div');
 var divCaracter = document.createElement('div');
+var footer = document.createElement('div');
+var pFooter = document.createElement('p');
+var textFooter = document.createTextNode('Creado por Alondra y Andrea');
+body.appendChild(footer);
+footer.appendChild(pFooter);
+pFooter.appendChild(textFooter);
+pFooter.classList.add('footer');
 divLength.classList.add('select-config');
 divRules.classList.add('select-config');
 divCaracter.classList.add('select-config');
@@ -198,6 +208,8 @@ var generatePassword = function () {
         //console.log(ruleInput.checked);
         if (ruleInput.checked == true) {
             if (ruleInput.value == "Solo-letras") {
+                document.getElementById("check-simbolos").removeAttribute("checked");
+                document.getElementById("check-numeros").removeAttribute("checked");
                 document.getElementById("check-simbolos").setAttribute("disabled", "true");
                 document.getElementById("check-numeros").setAttribute("disabled", "true");
                 document.getElementById('check-mayusculas').setAttribute("checked", "checked");
@@ -241,29 +253,30 @@ var generatePassword = function () {
                     // if(types[type] == true) {
                     if (type == selectChar.value) {
                         char = char + caracters[type] + " ";
+                        // console.log(char);
                     }
                     //}
                 }
             }
         }
         var newArray = char.split(' ');
+        //console.log(newArray);
         // console.log(newArray);
-        for (var i = 0; i < selectValueLong; i++) {
+        for (var i = 0; i < selectValueLong / 3; i++) {
+            console.log(selectValueLong);
             password = password + newArray[Math.floor(Math.random() * newArray.length)];
         }
         textInit.textContent = password;
         //console.log(password);
     }
 };
-// const findSimilar = (a, b) => {
-//     char
-//     for (let elem of char) {
-//         if((a == "I" && b == 1) || (a == "i" && b == 1) || (a == "O" && b == 0) ||(a == "o" && b == 0)) {
-//            b = a
-//            console.log(a, b)
-//         }
+// let prueba = "kjhi561qcw"
+// const findSimilar = (pass) => {
+//     if((pass.includes('i')) && (pass.includes(1))) {
+//         return pass.parseInt(indexOf(1))
 //     }
-// }
+//  }
+// findSimilar(prueba)
 // console.log(findSimilar("i", 1))
 // function aHackerSpeak(str){
 //         return str.replace(/[iI]/g, 1).replace(/[eE]/g, 3).replace(/[aA]/g, 4).replace(/[sS]/g,5).replace(/[oO]/g,0)
