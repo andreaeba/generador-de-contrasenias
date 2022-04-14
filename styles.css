@@ -143,7 +143,7 @@ body {
 /* Responsive  */
 
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
 
     .container {
         width: 80%;
