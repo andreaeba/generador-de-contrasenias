@@ -15,12 +15,12 @@ var divShow = document.createElement('div');
 var divPassword = document.createElement('div');
 var divCopy = document.createElement('div');
 var divRefresh = document.createElement('div');
-divShow.classList.add('div-show');
+divShow.classList.add('final-password');
 container.appendChild(divShow);
 divShow.appendChild(divPassword);
 divShow.appendChild(divCopy);
 divShow.appendChild(divRefresh);
-divPassword.classList.add('password-section');
+divPassword.classList.add('final-password-input');
 var p = document.createElement('span');
 var textInit = document.createTextNode('e4!@¿¿i04FTh');
 p.appendChild(textInit);
@@ -40,7 +40,7 @@ divRefresh.appendChild(iconRefresh);
 var divConfig = document.createElement('div');
 var h4 = document.createElement('h4');
 var h4Text = document.createTextNode("Personalice su contraseña");
-divConfig.classList.add('div-config');
+divConfig.classList.add('config-section');
 h4.classList.add('text-personalize');
 container.appendChild(divConfig);
 h4.appendChild(h4Text);
@@ -56,22 +56,22 @@ body.appendChild(footer);
 footer.appendChild(pFooter);
 pFooter.appendChild(textFooter);
 pFooter.classList.add('footer');
-divLength.classList.add('select-config');
-divRules.classList.add('select-config');
-divCaracter.classList.add('select-config');
+divLength.classList.add('form-parameters');
+divRules.classList.add('form-parameters');
+divCaracter.classList.add('form-parameters');
 var h6Length = document.createElement('h6');
 var h6Rules = document.createElement('h6');
 var h6Caracter = document.createElement('h6');
-h6Length.classList.add('h6text');
-h6Rules.classList.add('h6text');
-h6Caracter.classList.add('h6text');
+h6Length.classList.add('h6title');
+h6Rules.classList.add('h6title');
+h6Caracter.classList.add('h6title');
 var h6LengthText = document.createTextNode("Longitud");
 var h6RulesText = document.createTextNode("Reglas");
 var h6CaracterText = document.createTextNode("Caracteres");
 var form = document.createElement('form');
 form.setAttribute("name", "passForm");
 // form.setAttribute("onclick", "return validateForm()")
-form.classList.add('specific-config');
+form.classList.add('form-control');
 divConfig.appendChild(divSpecificConfig);
 divLength.appendChild(h6Length);
 h6Length.appendChild(h6LengthText);
@@ -121,7 +121,6 @@ for (var _i = 0, lengthChar_1 = lengthChar; _i < lengthChar_1.length; _i++) {
 }
 //For de reglas
 var rules = ["Solo-letras", "Lectura-simple", "Todos-los-caracteres"];
-// const values = ["1", "2", "3"]
 for (var _a = 0, rules_1 = rules; _a < rules_1.length; _a++) {
     var elem = rules_1[_a];
     var selectRules = document.createElement('div');
@@ -265,17 +264,6 @@ var generatePassword = function () {
         //console.log(password);
     }
 };
-// let prueba = "kjhi561qcw"
-// const findSimilar = (pass) => {
-//     if((pass.includes('i')) && (pass.includes(1))) {
-//         return pass.parseInt(indexOf(1))
-//     }
-//  }
-// findSimilar(prueba)
-// console.log(findSimilar("i", 1))
-// function aHackerSpeak(str){
-//         return str.replace(/[iI]/g, 1).replace(/[eE]/g, 3).replace(/[aA]/g, 4).replace(/[sS]/g,5).replace(/[oO]/g,0)
-//
 // function copyToClipBoard() {
 //     let content = document.getElementById('textPass')
 //     content.select();
