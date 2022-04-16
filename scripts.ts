@@ -23,14 +23,14 @@ const divPassword = document.createElement('div')
 const divCopy = document.createElement('div')
 const divRefresh = document.createElement('div')
 
-divShow.classList.add('div-show')
+divShow.classList.add('final-password')
 
 container.appendChild(divShow)
 divShow.appendChild(divPassword)
 divShow.appendChild(divCopy)
 divShow.appendChild(divRefresh)
 
-divPassword.classList.add('password-section')
+divPassword.classList.add('final-password-input')
 
 const p = document.createElement('span')
 const textInit = document.createTextNode('e4!@¿¿i04FTh')
@@ -63,7 +63,7 @@ const h4 = document.createElement('h4')
 
 const h4Text = document.createTextNode("Personalice su contraseña")
 
-divConfig.classList.add('div-config')
+divConfig.classList.add('config-section')
 h4.classList.add('text-personalize')
 
 container.appendChild(divConfig)
@@ -86,17 +86,17 @@ pFooter.appendChild(textFooter)
 pFooter.classList.add('footer')
 
 
-divLength.classList.add('select-config')
-divRules.classList.add('select-config')
-divCaracter.classList.add('select-config')
+divLength.classList.add('form-parameters')
+divRules.classList.add('form-parameters')
+divCaracter.classList.add('form-parameters')
 
 const h6Length = document.createElement('h6')
 const h6Rules = document.createElement('h6')
 const h6Caracter = document.createElement('h6')
 
-h6Length.classList.add('h6text')
-h6Rules.classList.add('h6text')
-h6Caracter.classList.add('h6text')
+h6Length.classList.add('h6title')
+h6Rules.classList.add('h6title')
+h6Caracter.classList.add('h6title')
 
 const h6LengthText = document.createTextNode("Longitud")
 const h6RulesText = document.createTextNode("Reglas")
@@ -107,7 +107,7 @@ const form = document.createElement('form')
 form.setAttribute("name", "passForm")
 // form.setAttribute("onclick", "return validateForm()")
 
-form.classList.add('specific-config')
+form.classList.add('form-control')
 
 divConfig.appendChild(divSpecificConfig)
 divLength.appendChild(h6Length)
@@ -175,7 +175,6 @@ for (const elem of lengthChar) {
 
 const rules: string[] = ["Solo-letras", "Lectura-simple", "Todos-los-caracteres"]
 
-// const values = ["1", "2", "3"]
 
 for (const elem of rules) {
 
@@ -249,91 +248,89 @@ for (const elem of character) {
     nameNumeros.textContent = "Números"
     nameSimbolos.textContent = "Símbolos"
 
-const generatePassword = () => {
+    const generatePassword = () => {
 
+        const longInputs = document.getElementsByClassName("long-input")
+        const rulesInputs = document.getElementsByClassName("rules-input")
+        const charInputs = document.getElementsByClassName("select-char")
 
-    const longInputs = document.getElementsByClassName("long-input")
-    const rulesInputs = document.getElementsByClassName("rules-input")
-    const charInputs = document.getElementsByClassName("select-char")
+        let char = ""
+        let password = ""
+        let selectValueLong = 0
 
-    let char = ""
-    let password = ""
-    let selectValueLong = 0
-
-    for(const longInput of longInputs) {
-        if(longInput.checked == true) {
-            if(longInput.value == 12) {
-                selectValueLong = 12
-            } else if(longInput.value == 9) {
-                selectValueLong = 9
-            } else if(longInput.value == 6) {
-                selectValueLong = 6
-            }           
-           console.log(selectValueLong)
+        for(const longInput of longInputs) {
+            if(longInput.checked == true) {
+                if(longInput.value == 12) {
+                    selectValueLong = 12
+                } else if(longInput.value == 9) {
+                    selectValueLong = 9
+                } else if(longInput.value == 6) {
+                    selectValueLong = 6
+                }           
+            console.log(selectValueLong)
+            }
         }
+
+        for(const ruleInput of rulesInputs) {
+            //console.log(ruleInput.checked);
+
+
+            if (ruleInput.checked == true)  {
+                if(ruleInput.value == "Solo-letras") {
+                    document.getElementById("check-simbolos").removeAttribute("checked")
+                    document.getElementById("check-numeros").removeAttribute("checked")
+                    document.getElementById("check-simbolos").setAttribute("disabled", "true")
+                    document.getElementById("check-numeros").setAttribute("disabled", "true")
+                    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                    document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                    
+                    types.mayusculas = true
+                    types.minusculas = true
+                    types.numeros = false
+                    types.simbolos = false
+
+                    console.log("funcionaa solo letras")
+                } else if(ruleInput.value == "Lectura-simple") {
+                    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                    document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                    document.getElementById('check-numeros').setAttribute("checked", "checked")
+                    //document.getElementById("check-simbolos").removeAttribute("checked")
+                    document.getElementById("check-numeros").removeAttribute("disabled")                
+                    types.mayusculas = true
+                    types.minusculas = true
+                    types.numeros = true
+                    types.simbolos = false
+                    console.log("funcionaa lectura simple")
+                } else if(ruleInput.value == "Todos-los-caracteres") {
+                    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                    document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                    document.getElementById('check-numeros').setAttribute("checked", "checked")
+                    document.getElementById('check-simbolos').setAttribute("checked", "checked")
+                    document.getElementById("check-numeros").removeAttribute("disabled")
+                    document.getElementById("check-simbolos").removeAttribute("disabled")
+                    types.mayusculas = true
+                    types.minusculas = true
+                    types.numeros = true
+                    types.simbolos = true
+                    console.log("funcionaa todos los caracteres")
+                }
+            }
+
+
+        for(const selectChar of charInputs) {
+            for(const type in types) {
+                if(selectChar.checked == true) {
+                // if(types[type] == true) {
+                        if(type == selectChar.value) {
+                            char = char + caracters[type] + " " 
+                        // console.log(char);
+                            
+                        }
+                    //}
+                }
+            }
+
     }
-
-
-    for(const ruleInput of rulesInputs) {
-        //console.log(ruleInput.checked);
-
-
-        if (ruleInput.checked == true)  {
-            if(ruleInput.value == "Solo-letras") {
-                document.getElementById("check-simbolos").removeAttribute("checked")
-                document.getElementById("check-numeros").removeAttribute("checked")
-                document.getElementById("check-simbolos").setAttribute("disabled", "true")
-                document.getElementById("check-numeros").setAttribute("disabled", "true")
-                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-                document.getElementById('check-minusculas').setAttribute("checked", "checked")
-                
-                types.mayusculas = true
-                types.minusculas = true
-                types.numeros = false
-                types.simbolos = false
-
-                console.log("funcionaa solo letras")
-            } else if(ruleInput.value == "Lectura-simple") {
-                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-                document.getElementById('check-minusculas').setAttribute("checked", "checked")
-                document.getElementById('check-numeros').setAttribute("checked", "checked")
-                //document.getElementById("check-simbolos").removeAttribute("checked")
-                document.getElementById("check-numeros").removeAttribute("disabled")                
-                types.mayusculas = true
-                types.minusculas = true
-                types.numeros = true
-                types.simbolos = false
-                console.log("funcionaa lectura simple")
-            } else if(ruleInput.value == "Todos-los-caracteres") {
-                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-                document.getElementById('check-minusculas').setAttribute("checked", "checked")
-                document.getElementById('check-numeros').setAttribute("checked", "checked")
-                document.getElementById('check-simbolos').setAttribute("checked", "checked")
-                document.getElementById("check-numeros").removeAttribute("disabled")
-                document.getElementById("check-simbolos").removeAttribute("disabled")
-                types.mayusculas = true
-                types.minusculas = true
-                types.numeros = true
-                types.simbolos = true
-                console.log("funcionaa todos los caracteres")
-            }
-        }
-
-
-    for(const selectChar of charInputs) {
-        for(const type in types) {
-            if(selectChar.checked == true) {
-               // if(types[type] == true) {
-                    if(type == selectChar.value) {
-                        char = char + caracters[type] + " " 
-                       // console.log(char);
-                        
-                    }
-                //}
-            }
-        }
-
- }
 
     let newArray = char.split(' ')
     //console.log(newArray);
@@ -350,37 +347,8 @@ const generatePassword = () => {
     textInit.textContent = password
     //console.log(password);
 
-
     }
-
-
-
-
 }
-
-// let prueba = "kjhi561qcw"
-
-// const findSimilar = (pass) => {
-
-    
-
-//     if((pass.includes('i')) && (pass.includes(1))) {
-//         return pass.parseInt(indexOf(1))
-//     }
-
-
-
-//  }
-
-// findSimilar(prueba)
-
-
-
-// console.log(findSimilar("i", 1))
-
-        // function aHackerSpeak(str){
-        //         return str.replace(/[iI]/g, 1).replace(/[eE]/g, 3).replace(/[aA]/g, 4).replace(/[sS]/g,5).replace(/[oO]/g,0)
-        //
 
 // function copyToClipBoard() {
 
@@ -401,7 +369,7 @@ iconRefresh.addEventListener("click", () => {
 
 })
 
-const inicializarPagina = () => { // descomentar todo lo que esta comentado cuando el código funcione
+const inicializarPagina = () => {
 
     const checkInitLength = document.getElementById('check-12')
     const checkInitRules = document.getElementById('check-Solo-letras')

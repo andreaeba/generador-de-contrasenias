@@ -18,17 +18,14 @@ body {
     background-image: url("./assets/background-image.jpg");
     background-size: 1920px 1080px;
 }
+
 .container {
     width: 40vw;
     min-width: 300px;
     height: 320px;
-    /* background-color: darkcyan; */
-    /* border: 1px solid black; */
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* margin-top: 20px; */
-    
 }
 
 .title {
@@ -43,7 +40,6 @@ body {
     color:white;
     max-width: 80vw;
     text-align: center;
-
 }
 
 .textPar {
@@ -53,20 +49,9 @@ body {
     margin-bottom: 30px;
     font-weight: bold;
     color: white;
-    /* text-shadow: 1px 1px 18px #000000eb; */
-    
 }
 
-.footer {
-    font-size: 14px;
-    text-align: center;
-    margin-top:30px;
-    color: white;
-    text-shadow: 1px 1px 18px #000000eb;
-}
-
-
-.div-show {
+.final-password {
     width: 100%;
     background-color: white;
     border-radius: 20px;
@@ -76,7 +61,7 @@ body {
     box-shadow: 1px 2px 0px #2d2d2d30;
 }
 
-.password-section {
+.final-password-input {
     width: 85%;
     font-size: 25px;
     display:flex;
@@ -99,7 +84,7 @@ body {
     margin-left:15px;
 }
 
-.div-config {
+.config-section {
     width: 100%;
     background-color: white;
     border-radius: 20px;
@@ -110,35 +95,42 @@ body {
     box-shadow: 1px 2px 0px #2d2d2d30;
     display: flex;
     flex-direction: column;
-
 }
 
 .text-personalize {
-    font-size: 15px;
+    font-size: 18px;
     margin: 0;
 } 
 
-.specific-config {
+.form-control {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.select-lenght {
+.select-length {
     display:flex;
     flex-direction: column;
 }
 
-.select-config {
+.form-parameters {
     width: 33%;
     font-size: 12px;
     line-height: 20px;
 }
 
-.h6text {
+.h6title {
     font-size:12px;
     color:#0b0e18d9;
     margin:16px 0px;
+}
+
+.footer {
+    font-size: 14px;
+    text-align: center;
+    margin-top:30px;
+    color: white;
+    text-shadow: 1px 1px 18px #000000eb;
 }
 
 /* Responsive  */
@@ -151,25 +143,25 @@ body {
         height: 80vh;
     }
  
-    .div-config {
+    .config-section {
         align-items: flex-start;
     }
-    .specific-config {
+
+    .form-control {
         display:flex;
         flex-direction: column;
-        width:80%
     }
 
-    .select-config{
+    .form-parameters {
         width: 150px;
         font-size: 13px;
     }
 
     .text-personalize {
-        font-size: 13px;
+        font-size: 18px;
     } 
 
-    .h6text{
+    .h6title {
         margin: 20px 0px;
     }
 
