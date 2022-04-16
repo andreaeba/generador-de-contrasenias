@@ -4,6 +4,8 @@ Nombre del proyecto: Generador de contraseñas
 
 Finalidad: Crear contraseñas seguras y aleatorias online, dependiendo de los parámetros que elija el usuario.
 
+Deploy: https://andreaeba.github.io/generador-de-contrasenias/
+
 ✓ Funciones:
 - Generar contraseña aleatoria dependiendo de los parámetros especificados por el usuario o los que trae por default
 - Copiar la contraseña
