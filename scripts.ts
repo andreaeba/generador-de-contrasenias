@@ -10,16 +10,9 @@ const h1Text = document.createTextNode('Generador de contraseñas')
 
 container.classList.add('container')
 
-const par = document.createElement('p')
-const textPar = document.createTextNode('Crea contraseñas seguras y aleatorias de forma online. Solo tenes que elegir los parámetros que precises y listo! :)')
-
-par.classList.add('textPar')
-
 body.appendChild(divH1)
 h1.appendChild(h1Text)
 divH1.appendChild(h1)
-body.appendChild(par)
-par.appendChild(textPar)
 body.appendChild(container)
 
 

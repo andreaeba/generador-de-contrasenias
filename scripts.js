@@ -6,14 +6,9 @@ var divH1 = document.createElement('div');
 divH1.classList.add('title');
 var h1Text = document.createTextNode('Generador de contraseñas');
 container.classList.add('container');
-var par = document.createElement('p');
-var textPar = document.createTextNode('Crea contraseñas seguras y aleatorias de forma online. Solo tenes que elegir los parámetros que precises y listo! :)');
-par.classList.add('textPar');
 body.appendChild(divH1);
 h1.appendChild(h1Text);
 divH1.appendChild(h1);
-body.appendChild(par);
-par.appendChild(textPar);
 body.appendChild(container);
 // Sección div de mostrar contraseña
 var divShow = document.createElement('div');
