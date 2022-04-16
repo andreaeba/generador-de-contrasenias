@@ -1,4 +1,3 @@
-// Seccion container
 var body = document.body;
 var container = document.createElement('div');
 var h1 = document.createElement('h1');
@@ -10,10 +9,12 @@ body.appendChild(divH1);
 h1.appendChild(h1Text);
 divH1.appendChild(h1);
 body.appendChild(container);
-// Sección div de mostrar contraseña
+// Sección donde se muestra la contraseña
 var divShow = document.createElement('div');
 var divPassword = document.createElement('div');
+// Ícono de copiar a portapapeles
 var divCopy = document.createElement('div');
+// Ícono de refrescar contraseña
 var divRefresh = document.createElement('div');
 divShow.classList.add('final-password');
 container.appendChild(divShow);
@@ -21,22 +22,24 @@ divShow.appendChild(divPassword);
 divShow.appendChild(divCopy);
 divShow.appendChild(divRefresh);
 divPassword.classList.add('final-password-input');
-var p = document.createElement('span');
+var span = document.createElement('span');
 var textInit = document.createTextNode('e4!@¿¿i04FTh');
-p.appendChild(textInit);
-divPassword.appendChild(p);
-p.setAttribute("id", "textPass");
+span.appendChild(textInit);
+divPassword.appendChild(span);
+span.setAttribute("id", "textPass");
 var iconCopy = document.createElement('img');
 var iconRefresh = document.createElement('img');
 iconCopy.setAttribute('src', './assets/copy.png');
 iconCopy.setAttribute('alt', 'copy icon');
 divCopy.classList.add('icons');
+divCopy.setAttribute("aria-label", "Copy");
 iconRefresh.setAttribute('src', './assets/refresh.png');
 iconRefresh.setAttribute('alt', 'refresh icon');
 divRefresh.classList.add('icons');
+divRefresh.setAttribute("aria-label", "Refresh");
 divCopy.appendChild(iconCopy);
 divRefresh.appendChild(iconRefresh);
-// Sección div de configurar contraseña
+// Sección para configurar contraseña
 var divConfig = document.createElement('div');
 var h4 = document.createElement('h4');
 var h4Text = document.createTextNode("Personalice su contraseña");
@@ -70,7 +73,6 @@ var h6RulesText = document.createTextNode("Reglas");
 var h6CaracterText = document.createTextNode("Caracteres");
 var form = document.createElement('form');
 form.setAttribute("name", "passForm");
-// form.setAttribute("onclick", "return validateForm()")
 form.classList.add('form-control');
 divConfig.appendChild(divSpecificConfig);
 divLength.appendChild(h6Length);
@@ -86,7 +88,7 @@ form.appendChild(divCaracter);
 // Objetos de caracteres y tipos
 var caracters = {
     numeros: "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9",
-    simbolos: "@ ! $ % & * @ ! $ % & * @ ! $ % & * @ ! $ % & * @ ! $ % & *",
+    simbolos: "@ ! $ % & * @ ! $ % & *",
     mayusculas: "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
     minusculas: "a b c d e f g h i j k l m n o p q r s t u v w x y z"
 };
@@ -96,7 +98,7 @@ var types = {
     mayusculas: true,
     minusculas: true
 };
-// For de longitud
+// Creación dinámica de los inputs de longitud de caracteres
 var lengthChar = [12, 9, 6];
 for (var _i = 0, lengthChar_1 = lengthChar; _i < lengthChar_1.length; _i++) {
     var elem = lengthChar_1[_i];
@@ -110,16 +112,14 @@ for (var _i = 0, lengthChar_1 = lengthChar; _i < lengthChar_1.length; _i++) {
     input.setAttribute("name", "select-length");
     input.setAttribute("value", "".concat(elem));
     input.classList.add('long-input');
-    // input[1].setAttribute("checked", "checked")
     selectLength.appendChild(input);
     selectLength.appendChild(label);
     divLength.appendChild(selectLength);
     input.addEventListener("change", function () {
         generatePassword();
-        //console.log(e.target.value);
     });
 }
-//For de reglas
+// Creación dinámica de los inputs de reglas
 var rules = ["Solo-letras", "Lectura-simple", "Todos-los-caracteres"];
 for (var _a = 0, rules_1 = rules; _a < rules_1.length; _a++) {
     var elem = rules_1[_a];
@@ -146,7 +146,7 @@ var nameTodosLosCaractes = document.getElementById('label-Todos-los-caracteres')
 nameSoloLetras.textContent = "Solo letras";
 nameSecturaSimple.textContent = "Lectura simple";
 nameTodosLosCaractes.textContent = "Todos los caracteres";
-// For de Caracteres
+// Creación dinámica de los inputs de tipos de caracteres
 var character = ["mayusculas", "minusculas", "numeros", "simbolos"];
 for (var _b = 0, character_1 = character; _b < character_1.length; _b++) {
     var elem = character_1[_b];
@@ -175,6 +175,7 @@ nameMayusculas.textContent = "Mayúsculas";
 nameMinusculas.textContent = "Minúsculas";
 nameNumeros.textContent = "Números";
 nameSimbolos.textContent = "Símbolos";
+// Función para generar contraseñas
 var generatePassword = function () {
     var longInputs = document.getElementsByClassName("long-input");
     var rulesInputs = document.getElementsByClassName("rules-input");
@@ -194,12 +195,10 @@ var generatePassword = function () {
             else if (longInput.value == 6) {
                 selectValueLong = 6;
             }
-            console.log(selectValueLong);
         }
     }
     for (var _a = 0, rulesInputs_1 = rulesInputs; _a < rulesInputs_1.length; _a++) {
         var ruleInput = rulesInputs_1[_a];
-        //console.log(ruleInput.checked);
         if (ruleInput.checked == true) {
             if (ruleInput.value == "Solo-letras") {
                 document.getElementById("check-simbolos").removeAttribute("checked");
@@ -212,19 +211,18 @@ var generatePassword = function () {
                 types.minusculas = true;
                 types.numeros = false;
                 types.simbolos = false;
-                console.log("funcionaa solo letras");
             }
             else if (ruleInput.value == "Lectura-simple") {
                 document.getElementById('check-mayusculas').setAttribute("checked", "checked");
                 document.getElementById('check-minusculas').setAttribute("checked", "checked");
                 document.getElementById('check-numeros').setAttribute("checked", "checked");
-                //document.getElementById("check-simbolos").removeAttribute("checked")
+                document.getElementById("check-simbolos").setAttribute("disabled", "true");
+                document.getElementById("check-simbolos").removeAttribute("checked");
                 document.getElementById("check-numeros").removeAttribute("disabled");
                 types.mayusculas = true;
                 types.minusculas = true;
                 types.numeros = true;
                 types.simbolos = false;
-                console.log("funcionaa lectura simple");
             }
             else if (ruleInput.value == "Todos-los-caracteres") {
                 document.getElementById('check-mayusculas').setAttribute("checked", "checked");
@@ -237,43 +235,43 @@ var generatePassword = function () {
                 types.minusculas = true;
                 types.numeros = true;
                 types.simbolos = true;
-                console.log("funcionaa todos los caracteres");
             }
         }
-        for (var _b = 0, charInputs_1 = charInputs; _b < charInputs_1.length; _b++) {
-            var selectChar = charInputs_1[_b];
-            for (var type in types) {
-                if (selectChar.checked == true) {
-                    // if(types[type] == true) {
-                    if (type == selectChar.value) {
-                        char = char + caracters[type] + " ";
-                        // console.log(char);
-                    }
-                    //}
+    }
+    for (var _b = 0, charInputs_1 = charInputs; _b < charInputs_1.length; _b++) {
+        var selectChar = charInputs_1[_b];
+        for (var type in types) {
+            if (selectChar.checked == true) {
+                if (type == selectChar.value) {
+                    char = char + caracters[type] + " ";
                 }
             }
         }
-        var newArray = char.split(' ');
-        //console.log(newArray);
-        // console.log(newArray);
-        for (var i = 0; i < selectValueLong / 3; i++) {
-            console.log(selectValueLong);
-            password = password + newArray[Math.floor(Math.random() * newArray.length)];
-        }
-        textInit.textContent = password;
-        //console.log(password);
     }
+    var newArray = char.split(' ');
+    // Función para crear la contraseña random
+    for (var i = 0; i < selectValueLong; i++) {
+        password = password + newArray[Math.floor(Math.random() * newArray.length)];
+    }
+    textInit.textContent = password;
 };
-// function copyToClipBoard() {
-//     let content = document.getElementById('textPass')
-//     content.select();
-//     document.execCommand('copy');
-//     alert("Copied!");
-// }
-// iconCopy.addEventListener("click", copyToClipBoard())
+// Función para copiar la contraseña
+var copyToClipBoard = function () {
+    var content = document.getElementById('textPass').innerHTML;
+    navigator.clipboard.writeText(content)
+        .then(function () {
+        console.log("Text copied to clipboard...");
+    })["catch"](function (err) {
+        console.log('Something went wrong', err);
+    });
+    alert("¡Copiado en portapapeles!");
+};
+iconCopy.addEventListener("click", copyToClipBoard);
+// Función para refrescar la contraseña
 iconRefresh.addEventListener("click", function () {
     generatePassword();
 });
+// Función para que al inicializar la página tome algunos atributos por default y cree la contraseña
 var inicializarPagina = function () {
     var checkInitLength = document.getElementById('check-12');
     var checkInitRules = document.getElementById('check-Solo-letras');

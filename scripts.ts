@@ -1,4 +1,3 @@
-// Seccion container
 const body = document.body
 
 const container = document.createElement('div')
@@ -16,11 +15,14 @@ divH1.appendChild(h1)
 body.appendChild(container)
 
 
-// Sección div de mostrar contraseña
+// Sección donde se muestra la contraseña
 
 const divShow = document.createElement('div')
 const divPassword = document.createElement('div')
+
+// Ícono de copiar a portapapeles
 const divCopy = document.createElement('div')
+// Ícono de refrescar contraseña
 const divRefresh = document.createElement('div')
 
 divShow.classList.add('final-password')
@@ -32,13 +34,13 @@ divShow.appendChild(divRefresh)
 
 divPassword.classList.add('final-password-input')
 
-const p = document.createElement('span')
+const span = document.createElement('span')
 const textInit = document.createTextNode('e4!@¿¿i04FTh')
 
-p.appendChild(textInit)
-divPassword.appendChild(p)
+span.appendChild(textInit)
+divPassword.appendChild(span)
 
-p.setAttribute("id", "textPass")
+span.setAttribute("id", "textPass")
 
 const iconCopy = document.createElement('img')
 const iconRefresh = document.createElement('img')
@@ -47,16 +49,19 @@ iconCopy.setAttribute('src', './assets/copy.png')
 iconCopy.setAttribute('alt', 'copy icon' )
 
 divCopy.classList.add('icons')
+divCopy.setAttribute("aria-label", "Copy")
+
 
 iconRefresh.setAttribute('src', './assets/refresh.png')
 iconRefresh.setAttribute('alt', 'refresh icon')
 
 divRefresh.classList.add('icons')
+divRefresh.setAttribute("aria-label", "Refresh")
 
 divCopy.appendChild(iconCopy)
 divRefresh.appendChild(iconRefresh)
 
-// Sección div de configurar contraseña
+// Sección para configurar contraseña
 
 const divConfig = document.createElement('div')
 const h4 = document.createElement('h4')
@@ -105,7 +110,6 @@ const h6CaracterText = document.createTextNode("Caracteres")
 const form = document.createElement('form')
 
 form.setAttribute("name", "passForm")
-// form.setAttribute("onclick", "return validateForm()")
 
 form.classList.add('form-control')
 
@@ -128,7 +132,7 @@ form.appendChild(divCaracter)
 
 const caracters = {
     numeros: "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9",
-    simbolos: "@ ! $ % & * @ ! $ % & * @ ! $ % & * @ ! $ % & * @ ! $ % & *",
+    simbolos: "@ ! $ % & * @ ! $ % & *",
     mayusculas: "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
     minusculas: "a b c d e f g h i j k l m n o p q r s t u v w x y z"
 }
@@ -140,7 +144,7 @@ const types = {
     minusculas: true,
 }
 
-// For de longitud
+// Creación dinámica de los inputs de longitud de caracteres
 
 const lengthChar = [12, 9, 6]
 
@@ -157,7 +161,6 @@ for (const elem of lengthChar) {
     input.setAttribute("name", "select-length")
     input.setAttribute("value", `${elem}`)
     input.classList.add('long-input')
-    // input[1].setAttribute("checked", "checked")
 
     selectLength.appendChild(input)
     selectLength.appendChild(label)
@@ -166,12 +169,11 @@ for (const elem of lengthChar) {
 
     input.addEventListener("change", () => {
     generatePassword()
-    //console.log(e.target.value);
 
     })
 }
 
-//For de reglas
+// Creación dinámica de los inputs de reglas
 
 const rules: string[] = ["Solo-letras", "Lectura-simple", "Todos-los-caracteres"]
 
@@ -209,7 +211,7 @@ nameSoloLetras.textContent = "Solo letras"
 nameSecturaSimple.textContent = "Lectura simple"
 nameTodosLosCaractes.textContent = "Todos los caracteres"
 
-// For de Caracteres
+// Creación dinámica de los inputs de tipos de caracteres
 
 const character: string[] = ["mayusculas", "minusculas", "numeros", "simbolos"]
 
@@ -248,126 +250,131 @@ for (const elem of character) {
     nameNumeros.textContent = "Números"
     nameSimbolos.textContent = "Símbolos"
 
-    const generatePassword = () => {
+// Función para generar contraseñas
 
-        const longInputs = document.getElementsByClassName("long-input")
-        const rulesInputs = document.getElementsByClassName("rules-input")
-        const charInputs = document.getElementsByClassName("select-char")
+const generatePassword = () => {
 
-        let char = ""
-        let password = ""
-        let selectValueLong = 0
+    const longInputs = document.getElementsByClassName("long-input")
+    const rulesInputs = document.getElementsByClassName("rules-input")
+    const charInputs = document.getElementsByClassName("select-char")
 
-        for(const longInput of longInputs) {
-            if(longInput.checked == true) {
-                if(longInput.value == 12) {
-                    selectValueLong = 12
-                } else if(longInput.value == 9) {
-                    selectValueLong = 9
-                } else if(longInput.value == 6) {
-                    selectValueLong = 6
-                }           
-            console.log(selectValueLong)
+    let char = ""
+    let password = ""
+    let selectValueLong = 0
+
+    for(const longInput of longInputs) {
+        if(longInput.checked == true) {
+            if(longInput.value == 12) {
+                selectValueLong = 12
+            } else if(longInput.value == 9) {
+                selectValueLong = 9
+            } else if(longInput.value == 6) {
+                selectValueLong = 6
+            }           
+        }
+    }
+
+    for(const ruleInput of rulesInputs) {
+
+        if (ruleInput.checked == true)  {
+            if(ruleInput.value == "Solo-letras") {
+
+                document.getElementById("check-simbolos").removeAttribute("checked")
+                document.getElementById("check-numeros").removeAttribute("checked")
+                document.getElementById("check-simbolos").setAttribute("disabled", "true")
+                document.getElementById("check-numeros").setAttribute("disabled", "true")
+                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                    
+                types.mayusculas = true
+                types.minusculas = true
+                types.numeros = false
+                types.simbolos = false
+
+            } else if(ruleInput.value == "Lectura-simple") {
+
+                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                document.getElementById('check-numeros').setAttribute("checked", "checked")
+                document.getElementById("check-simbolos").setAttribute("disabled", "true")
+                document.getElementById("check-simbolos").removeAttribute("checked")
+                document.getElementById("check-numeros").removeAttribute("disabled")   
+
+                types.mayusculas = true
+                types.minusculas = true
+                types.numeros = true
+                types.simbolos = false
+
+            } else if(ruleInput.value == "Todos-los-caracteres") {
+
+                document.getElementById('check-mayusculas').setAttribute("checked", "checked")
+                document.getElementById('check-minusculas').setAttribute("checked", "checked")
+                document.getElementById('check-numeros').setAttribute("checked", "checked")
+                document.getElementById('check-simbolos').setAttribute("checked", "checked")
+                document.getElementById("check-numeros").removeAttribute("disabled")
+                document.getElementById("check-simbolos").removeAttribute("disabled")
+                types.mayusculas = true
+                types.minusculas = true
+                types.numeros = true
+                types.simbolos = true
+                
             }
         }
 
-        for(const ruleInput of rulesInputs) {
-            //console.log(ruleInput.checked);
+    }
 
-
-            if (ruleInput.checked == true)  {
-                if(ruleInput.value == "Solo-letras") {
-                    document.getElementById("check-simbolos").removeAttribute("checked")
-                    document.getElementById("check-numeros").removeAttribute("checked")
-                    document.getElementById("check-simbolos").setAttribute("disabled", "true")
-                    document.getElementById("check-numeros").setAttribute("disabled", "true")
-                    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-                    document.getElementById('check-minusculas').setAttribute("checked", "checked")
-                    
-                    types.mayusculas = true
-                    types.minusculas = true
-                    types.numeros = false
-                    types.simbolos = false
-
-                    console.log("funcionaa solo letras")
-                } else if(ruleInput.value == "Lectura-simple") {
-                    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-                    document.getElementById('check-minusculas').setAttribute("checked", "checked")
-                    document.getElementById('check-numeros').setAttribute("checked", "checked")
-                    //document.getElementById("check-simbolos").removeAttribute("checked")
-                    document.getElementById("check-numeros").removeAttribute("disabled")                
-                    types.mayusculas = true
-                    types.minusculas = true
-                    types.numeros = true
-                    types.simbolos = false
-                    console.log("funcionaa lectura simple")
-                } else if(ruleInput.value == "Todos-los-caracteres") {
-                    document.getElementById('check-mayusculas').setAttribute("checked", "checked")
-                    document.getElementById('check-minusculas').setAttribute("checked", "checked")
-                    document.getElementById('check-numeros').setAttribute("checked", "checked")
-                    document.getElementById('check-simbolos').setAttribute("checked", "checked")
-                    document.getElementById("check-numeros").removeAttribute("disabled")
-                    document.getElementById("check-simbolos").removeAttribute("disabled")
-                    types.mayusculas = true
-                    types.minusculas = true
-                    types.numeros = true
-                    types.simbolos = true
-                    console.log("funcionaa todos los caracteres")
-                }
-            }
-
-
-        for(const selectChar of charInputs) {
-            for(const type in types) {
-                if(selectChar.checked == true) {
-                // if(types[type] == true) {
-                        if(type == selectChar.value) {
-                            char = char + caracters[type] + " " 
-                        // console.log(char);
+    for(const selectChar of charInputs) {
+        for(const type in types) {
+            if(selectChar.checked == true) {
+                if(type == selectChar.value) {
+                    char = char + caracters[type] + " " 
                             
-                        }
-                    //}
                 }
             }
+        }
 
     }
 
     let newArray = char.split(' ')
-    //console.log(newArray);
-    
 
-    // console.log(newArray);
+    // Función para crear la contraseña random
 
-    for(let i = 0; i < selectValueLong / 3 ; i++) {
-        console.log(selectValueLong);
-        
+    for(let i = 0; i < selectValueLong ; i++) {
+
         password = password + newArray[Math.floor(Math.random() * newArray.length)]
     }
 
     textInit.textContent = password
-    //console.log(password);
 
-    }
 }
 
-// function copyToClipBoard() {
+// Función para copiar la contraseña
 
-//     let content = document.getElementById('textPass')
+const copyToClipBoard = () => {
 
-//     content.select();
-//     document.execCommand('copy');
+    let content = document.getElementById('textPass').innerHTML;
+    
+    navigator.clipboard.writeText(content)
+        .then(() => {
+        console.log("Text copied to clipboard...")
+    })
+        .catch(err => {
+        console.log('Something went wrong', err);
+    })
+    alert("¡Copiado en portapapeles!");
+}
 
-//     alert("Copied!");
-// }
+iconCopy.addEventListener("click", copyToClipBoard)
 
-// iconCopy.addEventListener("click", copyToClipBoard())
-
+// Función para refrescar la contraseña
 
 iconRefresh.addEventListener("click", () => {
 
     generatePassword()
 
 })
+
+// Función para que al inicializar la página tome algunos atributos por default y cree la contraseña
 
 const inicializarPagina = () => {
 
@@ -385,10 +392,8 @@ const inicializarPagina = () => {
     types.numeros = false
     types.simbolos = false
 
-
-
     generatePassword()
-
+    
 }
 
 window.onload = inicializarPagina() 
