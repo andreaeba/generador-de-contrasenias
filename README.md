@@ -11,15 +11,15 @@ Finalidad: Crear contraseñas seguras y aleatorias online, dependiendo de los pa
 
 • Principales parámetros a elegir:
 
-◦ Cantidad de caracteres:
+- Cantidad de caracteres:
    - 6 caracteres
    - 9 caracteres
    - 12 caracteres
-◦ Reglas:
+- Reglas:
    - Solo letras: la contraseña tomará solo mayúsculas y minúsculas
    - Lectura simple: la contraseña tomará mayúsculas, minúsculas y números, donde no se pueden repetir letras y números que sean similares. Por ejemplo, "O" y "0", "i" y "1".
    - Todos los caracteres: la contraseña tomará mayúsculas, minúsculas, números y símbolos.
-◦ Tipos de caracteres:
+- Tipos de caracteres:
    - Mayúsculas
    - Minúsculas
    - Números
