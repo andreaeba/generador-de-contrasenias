@@ -4,12 +4,12 @@ Nombre del proyecto: Generador de contraseñas
 
 Finalidad: Crear contraseñas seguras y aleatorias online, dependiendo de los parámetros que elija el usuario.
 
-• Funciones:
+✓ Funciones:
 - Generar contraseña aleatoria dependiendo de los parámetros especificados por el usuario o los que trae por default
 - Copiar la contraseña
 - Refrescar la contraseña
 
-• Principales parámetros a elegir:
+✓ Principales parámetros a elegir:
 
 - Cantidad de caracteres:
    - 6 caracteres
