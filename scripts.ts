@@ -82,7 +82,7 @@ const divCaracter = document.createElement('div')
 
 const footer = document.createElement('div')
 const pFooter = document.createElement('p')
-const textFooter = document.createTextNode('Creado por Alondra y Andrea')
+const textFooter = document.createTextNode('Creado por Andrea')
 
 body.appendChild(footer)
 footer.appendChild(pFooter)
