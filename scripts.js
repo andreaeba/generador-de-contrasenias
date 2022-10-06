@@ -54,7 +54,7 @@ var divRules = document.createElement('div');
 var divCaracter = document.createElement('div');
 var footer = document.createElement('div');
 var pFooter = document.createElement('p');
-var textFooter = document.createTextNode('Creado por Alondra y Andrea');
+var textFooter = document.createTextNode('Creado por Andrea');
 body.appendChild(footer);
 footer.appendChild(pFooter);
 pFooter.appendChild(textFooter);
